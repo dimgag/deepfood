@@ -13,4 +13,3 @@ ipython kernel install --user --name=denv
 
 # Move file to another dir
 mv ~/Downloads/MyFile.txt ~/Documents/Work/MyFile.txt
-
