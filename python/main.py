@@ -26,7 +26,7 @@ for model in models:
     # Fine Tuning
     model = m.model_finetuning(model)
     # Import Training
-    model, model_history = t.train_model(model, 'inceptionV2_food101', train_generator, validation_generator, nb_train_samples, nb_validation_samples, epochs, batch_size)
+    model, model_history = t.train_model(model, 'inceptionV2_food101', train_datagen, validation_generator, nb_train_samples, nb_validation_samples, epochs, batch_size)
     # Visualization
     viz(model_history, title='Accuracy and Loss of the model')
     # Evaluate

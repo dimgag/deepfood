@@ -1,7 +1,7 @@
 from collections import defaultdict
 import collections
-from collections import defaultdict
-import collections
+import shutil
+
 # Split the dataset into train and test -> RUN THIS IN TERMINAL
 # Train Data
 classes_images=defaultdict(list)
