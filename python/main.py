@@ -6,8 +6,8 @@ import evaluate as ev
 # Configuration
 n_classes = 101
 img_width, img_height = 299, 299
-train_data_dir = 'train'
-validation_data_dir = 'test'
+train_data_dir = 'persistent/food-101/train'
+validation_data_dir = 'persistent/food-101/test'
 nb_train_samples = 75750
 nb_validation_samples = 25250
 batch_size = 16
