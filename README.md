@@ -1,12 +1,15 @@
 # 🍕 DeepFood 🍔
-
 ## Multiclass Classification using Keras and Tensorflow on Food-101 Dataset
+-----------------------------------------------------------------------------------------
+### Download & Extract Food-101 Dataset
+```
+!wget http://data.vision.ee.ethz.ch/cvl/food-101.tar.gz
+!tar xzvf food-101.tar.gz
+```
+To split the dataset into Train and Test run the DSRI_split_train_test.py in your terminal after selecting the desired directory.
 
-
--------
+-----------------------------------------------------------------------------------------
 ## Files
-
--------
 ```
 python  > DSRI_split_train_test.py - Create the data folders in DSRI persistent folder
         > evaluate.py
@@ -25,7 +28,7 @@ README.md
 requirements.txt - pip Requirements
 ```
 
--------
+-----------------------------------------------------------------------------------------
 ## Models
 * ResNet152V2
 * Inceptionv3
@@ -34,7 +37,7 @@ requirements.txt - pip Requirements
 * EfficientNetV2L
 
 
--------
+-----------------------------------------------------------------------------------------
 ### Create conda env with the requirements
 ```bash
 chmod +x install.sh
