@@ -9,6 +9,13 @@
 To split the dataset into Train and Test run the DSRI_split_train_test.py in your terminal after selecting the desired directory.
 
 -----------------------------------------------------------------------------------------
+### Create conda env with the requirements
+```bash
+chmod +x install.sh
+
+./install.sh
+```
+-----------------------------------------------------------------------------------------
 ## Files
 ```
 python  > DSRI_split_train_test.py - Create the data folders in DSRI persistent folder
@@ -34,13 +41,4 @@ requirements.txt - pip Requirements
 * Inceptionv3
 * VGG16
 * Xception
-* EfficientNetV2L
-
-
------------------------------------------------------------------------------------------
-### Create conda env with the requirements
-```bash
-chmod +x install.sh
-
-./install.sh
-```
+* EfficientNetV2L , EfficientNetV2S
