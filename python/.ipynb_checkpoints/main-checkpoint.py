@@ -1,5 +1,4 @@
 import models as m
-from python.models import data_augmentation
 import train as t
 import visualization as viz
 import evaluate as ev
@@ -7,8 +6,8 @@ import evaluate as ev
 # Configuration
 n_classes = 101
 img_width, img_height = 299, 299
-train_data_dir = 'persistent/food-101/train'
-validation_data_dir = 'persistent/food-101/test'
+train_data_dir = 'train'
+validation_data_dir = 'test'
 nb_train_samples = 75750
 nb_validation_samples = 25250
 batch_size = 16
