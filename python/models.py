@@ -48,7 +48,7 @@ def get_model(model_name, include_top, weights):
 
 
 
-def data_augmentation(model,train_data_dir, validation_data_dir, img_height, img_width, batch_size):
+def data_augmentation(train_data_dir, validation_data_dir, img_height, img_width, batch_size):
     # Data Augmentation
     train_datagen = ImageDataGenerator(
         rescale=1. / 255,
@@ -69,7 +69,9 @@ def data_augmentation(model,train_data_dir, validation_data_dir, img_height, img
         target_size=(img_height, img_width),
         batch_size=batch_size,
         class_mode='categorical')
-    return train_datagen, validation_generator
+    return train_generator, validation_generator
+
+
 
 
 
