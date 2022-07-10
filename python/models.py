@@ -26,8 +26,6 @@ from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D, GlobalAveragePooling2D, AveragePooling2D
 
-
-
 def get_model(model_name, include_top, weights):
     if model_name == 'ResNet152V2':
         model =  tf.keras.applications.ResNet152V2(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
@@ -45,8 +43,6 @@ def get_model(model_name, include_top, weights):
         model =  tf.keras.applications.EfficientNetV2S(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
         model.trainable = False
     return model
-
-
 
 def data_augmentation(train_data_dir, validation_data_dir, img_height, img_width, batch_size):
     # Data Augmentation
@@ -72,12 +68,7 @@ def data_augmentation(train_data_dir, validation_data_dir, img_height, img_width
     return train_generator, validation_generator
 
 
-
-
-
-
-
-def model_finetuning(model):    
+def model_finetuning(model):
     x = model.output
     x = GlobalAveragePooling2D()(x)
     x = Dense(128,activation='relu')(x)
@@ -85,4 +76,3 @@ def model_finetuning(model):
     predictions = Dense(102,kernel_regularizer=regularizers.l2(0.005), activation='softmax')(x)
     model = Model(inputs=model.input, outputs=predictions)
     return model
-

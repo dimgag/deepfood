@@ -17,9 +17,8 @@ for food in classes_images.keys():
 		os.makedirs(os.path.join("../persistent/food-101/train", food))
 	for i in classes_images[food]:
 		shutil.copyfile(os.path.join("../persistent/food-101/images", food, i), os.path.join("../persistent/food-101/train", food, i))
-
-
-# Test Data
+  
+# Test/Validation Data
 classes_images=defaultdict(list)
 with open('../persistent/food-101/meta/test.txt', 'r') as txt:
 	paths= [read.strip() for read in txt.readlines()]
