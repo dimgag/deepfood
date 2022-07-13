@@ -20,10 +20,10 @@ from tensorflow.keras.applications.resnet_v2 import ResNet152V2
 from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.applications.vgg16 import VGG16
 from tensorflow.keras.applications.xception import Xception
-# from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
+from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
 # !pip install tf-nightly
-from tensorflow.python.keras.applications.efficientnet import *
-from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S
+# from tensorflow.python.keras.applications.efficientnet import *
+# from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D, GlobalAveragePooling2D, AveragePooling2D
