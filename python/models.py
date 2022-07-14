@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.image as img
 import matplotlib.pyplot as plt
 import os
-import cv2
+# import cv2
 import random
 # %matplotlib inline
 import tensorflow as tf
@@ -22,8 +22,10 @@ from tensorflow.keras.applications.vgg16 import VGG16
 from tensorflow.keras.applications.xception import Xception
 # from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
 # !pip install tf-nightly
-from tensorflow.python.keras.applications.efficientnet import *
-from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S
+# from tensorflow.python.keras.applications.efficientnet import *
+from efficientnet_v2 import EfficientNetV2S
+
+# from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D, GlobalAveragePooling2D, AveragePooling2D

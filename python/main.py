@@ -21,7 +21,7 @@ epochs = 30
 train_generator, validation_generator = m.data_augmentation(train_data_dir=train_data_dir, validation_data_dir=validation_data_dir, img_width=img_height, img_height=img_height, batch_size=batch_size)
 
 # Load the models
-models = ['InceptionV3'] # ['ResNet152V2', 'InceptionV3', 'VGG16', 'Xception', 'EfficientNetV2S']
+models = ['EfficientNetV2S'] # ['ResNet152V2', 'InceptionV3', 'VGG16', 'Xception', 'EfficientNetV2S']
 
 for mod in models:
     model = m.get_model(mod, False, 'imagenet')
@@ -33,3 +33,12 @@ for mod in models:
     viz.plot_Acc_and_Loss(model_history, title='Accuracy and Loss of the model')
     # # Evaluate
     ev.model_eval(model, train_generator, validation_generator)
+
+
+
+
+# EfficientNet = m.get_model('EfficientNetV2S', False, 'imagenet')
+# EfficientNet.summary()
+
+# EfficientNet = m.model_finetuning(EfficientNet)
+# EfficientNet.summary()
