@@ -44,7 +44,7 @@ def get_model(model_name, include_top, weights):
         model =  tf.keras.applications.Xception(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
         model.trainable = False
     elif model_name == 'EfficientNetV2S':
-        model =  tf.keras.applications.EfficientNetV2S(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
+        model = EfficientNetV2S(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
         model.trainable = False
     return model
 
