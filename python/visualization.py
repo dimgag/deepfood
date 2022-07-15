@@ -1,6 +1,5 @@
 import matplotlib.image as img
 import matplotlib.pyplot as plt
-# %matplotlib inline
 
 # Plot Accuracy and Loss of the model
 def plot_accuracy(history,title):
@@ -40,3 +39,5 @@ def plot_Acc_and_Loss(history,title):
     plt.xlabel('epoch')
     plt.legend(['train_loss', 'validation_loss'], loc='best')
     plt.show()
+
+
