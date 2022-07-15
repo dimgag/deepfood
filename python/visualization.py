@@ -39,3 +39,5 @@ def plot_Acc_and_Loss(history,title):
     plt.xlabel('epoch')
     plt.legend(['train_loss', 'validation_loss'], loc='best')
     plt.show()
+
+
