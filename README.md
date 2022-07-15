@@ -54,4 +54,4 @@ requirements.txt - pip Requirements
 * Inceptionv3
 * VGG16
 * Xception
-* EfficientNetV2L , EfficientNetV2S
+* EfficientNetV2S
