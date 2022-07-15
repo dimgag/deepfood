@@ -34,11 +34,3 @@ for mod in models:
     # # Evaluate
     ev.model_eval(model, train_generator, validation_generator)
 
-
-
-
-# EfficientNet = m.get_model('EfficientNetV2S', False, 'imagenet')
-# EfficientNet.summary()
-
-# EfficientNet = m.model_finetuning(EfficientNet)
-# EfficientNet.summary()
