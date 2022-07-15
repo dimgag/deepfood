@@ -33,12 +33,3 @@ for mod in models:
     viz.plot_Acc_and_Loss(model_history, title='Accuracy and Loss of the model')
     # # Evaluate
     ev.model_eval(model, train_generator, validation_generator)
-
-
-
-
-# EfficientNet = m.get_model('EfficientNetV2S', False, 'imagenet')
-# EfficientNet.summary()
-
-# EfficientNet = m.model_finetuning(EfficientNet)
-# EfficientNet.summary()
