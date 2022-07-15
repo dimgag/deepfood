@@ -1,6 +1,5 @@
 import matplotlib.image as img
 import matplotlib.pyplot as plt
-# %matplotlib inline
 
 # Plot Accuracy and Loss of the model
 def plot_accuracy(history,title):
