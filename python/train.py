@@ -39,25 +39,3 @@ def train_model(model, model_name, train, val, nb_train_samples, nb_validation_s
                                   callbacks=[csv_logger, checkpointer])
     model.save(model_name)    
     return model, history
-
-
-
-
-
-
-
-from efficientnet_v2 import EfficientNetV2S # This is the custom net that I'm using...
-
-
-
-
-# 1st Try to implement the training schema of SAM in Keras :( 
-def sam_train_model(model, model_name, train, val, nb_train_samples, nb_validation_samples, epochs, batch_size):
-    base_optimizer = SGD  # define an optimizer for the "sharpness-aware" update
-    optimizer = SAM(model.parameters(), base_optimizer, lr=0.1, momentum=0.9)
-    model.trainable = True
-    model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
-    checkpointer = ModelCheckpoint(filepath=model_name+'.hdf5', verbose=1, save_best_only=True)
-    csv_logger = CSVLogger(model_name +'.log') #, append = True)
-    model_history = model.fit_generator(train, steps_per_epoch = nb_train_samples // batch_size, validation_data=val, validation_steps=nb_validation_samples // batch_size, epochs=epochs, verbose=1, callbacks=[csv_logger, checkpointer])
-    model.save(model_name)
