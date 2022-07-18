@@ -1,15 +1,6 @@
 # Author: Dimitrios Gagatsis
 # Date: 2022-07-18
-# License: Public Domain
-#
-# This file is part of the SAM project.
-# One file code contains the following:
-# 1. Food-101 dataset with data augmentation.
-# 2. EfficientNetV2S model.
-# 3. Training of the model.
-# 4. Evaluation of the model.
-# 5. Visualization of the model.
-
+# Description: EfficientNet-SAM model
 import os
 from sklearn import metrics
 import tensorflow as tf
@@ -27,7 +18,6 @@ from tensorflow.keras.regularizers import l2
 from tensorflow.keras.layers import Dense, Dropout, GlobalAveragePooling2D
 from tensorflow.keras.callbacks import ModelCheckpoint, CSVLogger
 
-
 # <-------------------------------------------------------------------------------------------------------------->
 # # Small Food-101 dataset
 train_data_dir = '/Users/dim__gag/python/food-101/data_mini/train_mini'
@@ -39,42 +29,7 @@ nb_validation_samples = 750
 img_width, img_height = 299, 299
 batch_size = 16
 epochs = 30
-# <-------------------------------------------------------------------------------------------------------------->
 
-# # Load the data from Food-101 Dataset
-# !wget http://data.vision.ee.ethz.ch/cvl/food-101.tar.gz
-# !tar xzvf food-101.tar.gz
-
-# Split the data into train and val
-"""
-from collections import defaultdict
-import collections
-import shutil
-import os
-
-# Split the dataset into train and test -> RUN THIS IN TERMINAL
-# Train Data
-classes_images=defaultdict(list)
-with open('../persistent/food-101/meta/train.txt', 'r') as txt:
-	paths= [read.strip() for read in txt.readlines()]
-	for p in paths:
-		food = p.split('/')
-		classes_images[food[0]].append(food[1] + '.jpg')
-
-for food in classes_images.keys():
-	if not os.path.exists(os.path.join("../persistent/food-101/train",food)):
-		os.makedirs(os.path.join("../persistent/food-101/train", food))
-	for i in classes_images[food]:
-		shutil.copyfile(os.path.join("../persistent/food-101/images", food, i), os.path.join("../persistent/food-101/train", food, i))
-  
-# Test/Validation Data
-classes_images=defaultdict(list)
-with open('../persistent/food-101/meta/test.txt', 'r') as txt:
-	paths= [read.strip() for read in txt.readlines()]
-	for p in paths:
-		food = p.split('/')
-		classes_images[food[0]].append(food[1] + '.jpg')
-"""
 # <-------------------------------------------------------------------------------------------------------------->
 # Data Augmentation
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -127,34 +82,6 @@ except ValueError: # detect GPUs
 print("Number of accelerators: ", strategy.num_replicas_in_sync)
 
 # <-------------------------------------------------------------------------------------------------------------->
-
-"""# Compile the model
-import SAMmodel
-SAM_EffNet = SAMmodel(ft_EffNet)
-SAM_EffNet.compile(optimizer=SGD(lr=0.0001, loss="categorical_crossentropy", metrics=['accuracy'] ,momentum=0.9))
-print(f"Total learnable parameters: {SAM_EffNet.count_params()/1e6} M")
-"""
-# <-------------------------------------------------------------------------------------------------------------->
-# Fit the model
-"""checkpointer = ModelCheckpoint(filepath='EffNetV2S_SAM.hdf5', verbose=1, save_best_only=True)
-csv_logger = CSVLogger('EffNetV2S_SAM.log')
-start = time.time()
-history = ft_EffNet.fit(train=train_datagen,
-                    steps_per_epoch= nb_train_samples // batch_size,
-                    validation=validation_generator,
-                    validation_steps=nb_validation_samples // batch_size,
-                    epochs=epochs,
-                    verbose=1,
-                    callbacks=[csv_logger, checkpointer])
-
-ft_EffNet.save('EffNetV2S_SAM.hdf5')
-print(f"Total training time: {(time.time() - start)/60.} minutes")
-
-# <-------------------------------------------------------------------------------------------------------------->
-# Evaluate the model
-ft_EffNet.evaluate(validation_generator, steps=nb_validation_samples // batch_size)
-"""
-
 # GET THE EFFICIENTNET MODEL
 
 from efficientnet_v2 import EfficientNetV2S
@@ -228,21 +155,29 @@ class SAMModel(tf.keras.Model):
         return norm
 # <-------------------------------------------------------------------------------------------------------------->
 
-
-
-
-
-
 # GET THE SAM MODEL
-
 # Initialize the model
 with strategy.scope():
     model = SAMModel(EffNet)
 
 
 
+# <-------------------------------------------------------------------------------------------------------------->
+# Compile the model
+model.compile(optimizer=SGD(learning_rate=0.0001, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
 
-# model.compile(
-#     optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["acc uracy"]
-# )
-# print(f"Total learnable parameters: {model.resnet_model.count_params()/1e6} M")
+
+
+checkpointer = ModelCheckpoint(filepath='EfficientSAM.hdf5', verbose=1, save_best_only=True)
+csv_logger = CSVLogger('EfficientSAM.log')
+
+# Treain the model
+history = model.fit_generator(train_generator,
+                                steps_per_epoch = nb_train_samples // batch_size,
+                                validation_data=validation_generator,
+                                validation_steps=nb_validation_samples // batch_size,
+                                epochs=epochs,
+                                verbose=1,
+                                callbacks=[csv_logger, checkpointer])
+
+model.save('EfficientSAM.hdf5')    
