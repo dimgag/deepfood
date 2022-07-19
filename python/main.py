@@ -28,6 +28,8 @@ batch_size = 16
 epochs = 30
 
 
+# Note: You need to change the number of classes in the model.py (line: 32)
+
 # Data Augementation
 train_generator, validation_generator = m.data_augmentation(train_data_dir=train_data_dir, validation_data_dir=validation_data_dir, img_width=img_height, img_height=img_height, batch_size=batch_size)
 
@@ -44,3 +46,4 @@ for mod in models:
     viz.plot_Acc_and_Loss(model_history, title='Accuracy and Loss of the model')
     # # Evaluate
     ev.model_eval(model, train_generator, validation_generator)
+
