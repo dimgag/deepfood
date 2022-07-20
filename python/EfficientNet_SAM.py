@@ -83,11 +83,8 @@ x = Dense(128, activation='relu')(x)
 x = Dropout(0.2)(x)
 predictions = Dense(3, kernel_regularizer=regularizers.l2(0.005), activation='softmax')(x)
 EffNet = Model(inputs=base_EffNet.input, outputs=predictions)
-EffNet.trainable = True # Unfreeze the model
-
-print(base_EffNet.input_shape)
-
-print(predictions.shape)
+# EffNet.trainable = True # Unfreeze the model
+EffNet.summary()
 
 
 
