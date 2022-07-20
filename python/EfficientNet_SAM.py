@@ -153,8 +153,9 @@ class SAMModel(tf.keras.Model):
 # with strategy.scope():
 model = SAMModel(EffNet)
 model.compile(optimizer=SGD(learning_rate=0.01, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
-checkpointer = ModelCheckpoint(filepath='EfficientSAM.hdf5', verbose=1, save_best_only=True)
+# checkpointer = ModelCheckpoint(filepath='EfficientSAM.hdf5', verbose=1, save_best_only=True)
 csv_logger = CSVLogger('EfficientSAM.log')
 # Train the model
-history = model.fit(train_generator, steps_per_epoch = nb_train_samples // batch_size, validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size, epochs=epochs, verbose=1, callbacks=[csv_logger, checkpointer])
-model.save('EfficientSAM.hdf5')
+history = model.fit(train_generator, steps_per_epoch = nb_train_samples // batch_size, validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size, epochs=epochs, verbose=1, callbacks=[csv_logger])
+# Find a way to save the model somehow.
+# model.save('EfficientSAM.hdf5')
