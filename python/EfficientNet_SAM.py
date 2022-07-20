@@ -1,7 +1,6 @@
 # Author: Dimitrios Gagatsis
 # Date: 2022-07-18
 # Description: EfficientNet-SAM model
-from email.mime import base
 import os
 from sklearn import metrics
 import tensorflow as tf
@@ -71,18 +70,24 @@ print("Number of accelerators: ", strategy.num_replicas_in_sync)
 # <-------------------------------------------------------------------------------------------------------------->
 # GET THE EFFICIENTNET MODEL
 
-from efficientnet_v2 import EfficientNetV2S
+# from efficientnet_v2 import EfficientNetV2S
 
-base_EffNet = EfficientNetV2S(include_top=False, weights='imagenet', input_tensor=None, input_shape= (299,299,3), pooling=None, classes=101, classifier_activation="softmax")
+from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
+
+base_EffNet = EfficientNetV2S(include_top=False, weights='imagenet')
 base_EffNet.trainable = False # Freeze the model
 # Fine tune the model
 x = base_EffNet.output
 x = GlobalAveragePooling2D()(x)
 x = Dense(128, activation='relu')(x)
-x = Dropout(0.5)(x)
-predictions = Dense(101, kernel_regularizer=regularizers.l2(0.005), activation='softmax')(x)
+x = Dropout(0.2)(x)
+predictions = Dense(3, kernel_regularizer=regularizers.l2(0.005), activation='softmax')(x)
 EffNet = Model(inputs=base_EffNet.input, outputs=predictions)
 EffNet.trainable = True # Unfreeze the model
+
+print(base_EffNet.input_shape)
+
+print(predictions.shape)
 
 
 
@@ -145,62 +150,11 @@ class SAMModel(tf.keras.Model):
 
 # GET THE SAM MODEL
 # Initialize the model
-with strategy.scope():
-    model = SAMModel(EffNet)
-
-
-
-# <-------------------------------------------------------------------------------------------------------------->
-# Compile the model
-# model.compile(optimizer=SGD(learning_rate=0.0001, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
-model.compile(optimizer=SGD(learning_rate=0.0001, momentum=0.9), metrics=['accuracy'])
-
-
+# with strategy.scope():
+model = SAMModel(EffNet)
+model.compile(optimizer=SGD(learning_rate=0.01, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
 checkpointer = ModelCheckpoint(filepath='EfficientSAM.hdf5', verbose=1, save_best_only=True)
 csv_logger = CSVLogger('EfficientSAM.log')
-
-# Treain the model
-history = model.fit_generator(train_generator, steps_per_epoch = nb_train_samples // batch_size, validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size, epochs=epochs, verbose=1, callbacks=[csv_logger, checkpointer])
-
+# Train the model
 history = model.fit(train_generator, steps_per_epoch = nb_train_samples // batch_size, validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size, epochs=epochs, verbose=1, callbacks=[csv_logger, checkpointer])
-
-
-# EffNet Only 
-EffNet.compile(optimizer=SGD(learning_rate=0.0001, momentum=0.9), metrics=['accuracy'])
-history = EffNet.fit_generator(train_generator, steps_per_epoch = nb_train_samples // batch_size, validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size, epochs=epochs, verbose=1, callbacks=[csv_logger, checkpointer]) 
-
-
 model.save('EfficientSAM.hdf5')
-
-
-# <-------------------------------------------------------------------------------------------------------------->
-# apply the sam optimizer to the model
-import sam as SAM
-
-opt = tf.keras.optimizers.SGD(learning_rate = 0.0001)
-opt = SAM.SAMWarpper(opt, rho=0.05)
-
-
-inputs = base_EffNet.input
-labels = base_EffNet.output
-
-def loss_func(predictions, labels):
-    return tf.keras.losses.categorical_crossentropy(predictions, labels)
-
-model.compile(optimizer=SGD(learning_rate=0.0001, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
-
-def grad_func():
-    with tf.GradientTape() as tape:
-        pred = model(inputs, training=True)
-        loss = loss_func(predictions=pred, labels=labels)
-    return pred, loss, tape
-
-
-opt.optimize(grad_func, model.trainable_variables)
-
-
-# <-------------------------------------------------------------------------------------------------------------->
-# EffNet Only 
-EffNet.compile(optimizer=SGD(learning_rate=0.0001, momentum=0.9), metrics=['accuracy'])
-history = EffNet.fit_generator(train_generator, steps_per_epoch = nb_train_samples // batch_size, validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size, epochs=epochs, verbose=1, callbacks=[csv_logger, checkpointer]) 
-
