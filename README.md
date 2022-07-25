@@ -54,4 +54,5 @@ requirements.txt - pip Requirements
 * Inceptionv3
 * VGG16
 * Xception
-* EfficientNetV2S
+* EfficientNetV2S, EfficientNetV2M, EfficientNetV2L
+* SAM (Optimizer)
