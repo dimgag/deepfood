@@ -7,7 +7,6 @@ import evaluate as ev
 # import os
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-# Configuration
 # # Full Food-101 dataset
 # train_data_dir = 'persistent/food-101/train'
 # validation_data_dir = 'persistent/food-101/test'
@@ -22,10 +21,11 @@ n_classes = 3
 nb_train_samples = 2250
 nb_validation_samples = 750
 
+
 # Training configuration
-img_width, img_height = 299, 299
-batch_size = 16
-epochs = 30
+img_width, img_height = 299, 299 # input image dimensions
+batch_size = 16 # Change this to your desired batch size
+epochs = 30 # Change the Number of epochs here
 
 
 # Note: You need to change the number of classes in the model.py (line: 32)
@@ -46,4 +46,3 @@ for mod in models:
     viz.plot_Acc_and_Loss(model_history, title='Accuracy and Loss of the model')
     # # Evaluate
     ev.model_eval(model, train_generator, validation_generator)
-
