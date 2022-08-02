@@ -3,8 +3,6 @@ import models as m
 import train as t
 import visualization as viz
 import evaluate as ev
-
-# import os
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # # Full Food-101 dataset
