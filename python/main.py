@@ -23,7 +23,7 @@ nb_validation_samples = 750
 # Training configuration
 img_width, img_height = 299, 299 # input image dimensions
 batch_size = 16 # Change this to your desired batch size
-epochs = 30 # Change the Number of epochs here
+epochs = 200 # Change the Number of epochs here
 
 
 # Note: You need to change the number of classes in the model.py (line: 32)
