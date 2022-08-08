@@ -6,24 +6,24 @@ import evaluate as ev
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # # Full Food-101 dataset
-# train_data_dir = 'persistent/food-101/train'
-# validation_data_dir = 'persistent/food-101/test'
-# n_classes = 101
-# nb_train_samples = 75750
-# nb_validation_samples = 25250
+train_data_dir = 'persistent/food-101/train'
+validation_data_dir = 'persistent/food-101/test'
+n_classes = 101
+nb_train_samples = 75750
+nb_validation_samples = 25250
 
 # # Small Food-101 dataset
-train_data_dir = '/Users/dim__gag/python/food-101/data_mini/train_mini'
-validation_data_dir = '/Users/dim__gag/python/food-101/data_mini/test_mini'
-n_classes = 3
-nb_train_samples = 2250
-nb_validation_samples = 750
+# train_data_dir = '/Users/dim__gag/python/food-101/data_mini/train_mini'
+# validation_data_dir = '/Users/dim__gag/python/food-101/data_mini/test_mini'
+# n_classes = 3
+# nb_train_samples = 2250
+# nb_validation_samples = 750
 
 
 # Training configuration
 img_width, img_height = 299, 299 # input image dimensions
 batch_size = 16 # Change this to your desired batch size
-epochs = 200 # Change the Number of epochs here
+epochs = 300 # Change the Number of epochs here
 
 
 # Note: You need to change the number of classes in the model.py (line: 32)
