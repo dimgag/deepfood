@@ -36,7 +36,7 @@ nb_validation_samples = 25250
 # Training configuration
 img_width, img_height = 299, 299
 batch_size = 16
-epochs = 3
+epochs = 300
 
 # <-------------------------------------------------------------------------------------------------------------->
 # Data Augmentation
