@@ -25,7 +25,6 @@ img_width, img_height = 299, 299 # input image dimensions
 batch_size = 16 # Change this to your desired batch size
 epochs = 300 # Change the Number of epochs here
 
-
 # Note: You need to change the number of classes in the model.py (line: 32)
 
 # Data Augementation
