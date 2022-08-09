@@ -19,9 +19,14 @@ from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.applications.vgg16 import VGG16
 from tensorflow.keras.applications.xception import Xception
 from efficientnet_v2 import EfficientNetV2S
+
+# from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
+
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D, GlobalAveragePooling2D, AveragePooling2D
+
+
 
 def get_model(model_name, include_top, weights):
     if model_name == 'ResNet152V2':
@@ -37,7 +42,7 @@ def get_model(model_name, include_top, weights):
         model =  tf.keras.applications.Xception(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=101, classifier_activation="softmax")
         model.trainable = False
     elif model_name == 'EfficientNetV2S':
-        model = EfficientNetV2S(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=101, classifier_activation="softmax")
+        model = EfficientNetV2S(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=3, classifier_activation="softmax")
         model.trainable = False
     return model
 
@@ -70,6 +75,6 @@ def model_finetuning(model):
     x = GlobalAveragePooling2D()(x)
     x = Dense(128,activation='relu')(x)
     x = Dropout(0.2)(x)
-    predictions = Dense(3,kernel_regularizer=regularizers.l2(0.005), activation='softmax')(x)
+    predictions = Dense(101,kernel_regularizer=regularizers.l2(0.005), activation='softmax')(x)
     model = Model(inputs=model.input, outputs=predictions)
     return model

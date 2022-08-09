@@ -35,8 +35,8 @@ nb_validation_samples = 25250
 
 # Training configuration
 img_width, img_height = 299, 299
-batch_size = 16
-epochs = 300
+batch_size = 16 # Change to 32?
+epochs = 100
 
 # <-------------------------------------------------------------------------------------------------------------->
 # Data Augmentation
@@ -65,15 +65,15 @@ validation_generator = test_datagen.flow_from_directory(
 
 # <-------------------------------------------------------------------------------------------------------------->
 # Define strategy for the training of the models
-try: # detect TPUs
-    tpu = None
-    tpu = tf.distribute.cluster_resolver.TPUClusterResolver() # TPU detection
-    tf.config.experimental_connect_to_cluster(tpu)
-    tf.tpu.experimental.initialize_tpu_system(tpu)
-    strategy = tf.distribute.experimental.TPUStrategy(tpu)
-except ValueError: # detect GPUs
-    strategy = tf.distribute.MirroredStrategy() # for GPU or multi-GPU machines
-print("Number of accelerators: ", strategy.num_replicas_in_sync)
+# try: # detect TPUs
+#     tpu = None
+#     tpu = tf.distribute.cluster_resolver.TPUClusterResolver() # TPU detection
+#     tf.config.experimental_connect_to_cluster(tpu)
+#     tf.tpu.experimental.initialize_tpu_system(tpu)
+#     strategy = tf.distribute.experimental.TPUStrategy(tpu)
+# except ValueError: # detect GPUs
+#     strategy = tf.distribute.MirroredStrategy() # for GPU or multi-GPU machines
+# print("Number of accelerators: ", strategy.num_replicas_in_sync)
 
 # <-------------------------------------------------------------------------------------------------------------->
 # GET THE EFFICIENTNET MODEL
@@ -89,7 +89,7 @@ x = base_EffNet.output
 x = GlobalAveragePooling2D()(x)
 x = Dense(128, activation='relu')(x)
 x = Dropout(0.2)(x)
-predictions = Dense(3, kernel_regularizer=regularizers.l2(0.005), activation='softmax')(x)
+predictions = Dense(101, kernel_regularizer=regularizers.l2(0.005), activation='softmax')(x)
 EffNet = Model(inputs=base_EffNet.input, outputs=predictions)
 # EffNet.trainable = True # Unfreeze the model
 # EffNet.summary()
@@ -153,7 +153,7 @@ class SAMModel(tf.keras.Model):
         return norm
 # <-------------------------------------------------------------------------------------------------------------->
 
-# GET THE SAM MODEL
+'''# GET THE SAM MODEL
 # Initialize the model
 # with strategy.scope():
 model = SAMModel(EffNet)
@@ -163,5 +163,25 @@ csv_logger = CSVLogger('EfficientSAM.log')
 # Train the model
 history = model.fit(train_generator, steps_per_epoch = nb_train_samples // batch_size, validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size, epochs=epochs, verbose=1, callbacks=[csv_logger])
 
-# Find a way to save the model somehow.
-# model.save('EfficientSAM.hdf5')
+# model.save('EfficientSAM.hdf5')'''
+
+
+
+
+
+# <-------------------------------------------------------------------------------------------------------------->
+
+model = SAMModel(EffNet)
+# model = EffNet
+
+
+# GET THE SAM MODEL
+model.trainable = True # Unfreeze the model
+model.compile(optimizer=SGD(learning_rate=0.0001, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
+# checkpointer = ModelCheckpoint(filepath='EfficientSAM.hdf5', verbose=1, save_best_only=True)
+csv_logger = CSVLogger('EfficientSAM_1.log')
+
+history = model.fit(train_generator, steps_per_epoch = nb_train_samples // batch_size, validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size, epochs=100, verbose=1, callbacks=[csv_logger]) 
+
+
+# plot_Acc_and_Loss(history, "EfficientNetV2S + SAM")
