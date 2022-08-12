@@ -38,7 +38,10 @@ for mod in models:
     # Fine Tuning
     model = m.model_finetuning(model)
     # Model Training
-    model, model_history = t.train_model(model=model, model_name=mod, train=train_generator, val=validation_generator, nb_train_samples=nb_train_samples, nb_validation_samples=nb_validation_samples, epochs=epochs, batch_size=batch_size)
+    model, model_history = t.train_model(model=model, model_name=mod, train=train_generator,
+                                         val=validation_generator, nb_train_samples=nb_train_samples,
+                                         nb_validation_samples=nb_validation_samples, epochs=epochs,
+                                         batch_size=batch_size)
     # # Visualization
     viz.plot_Acc_and_Loss(model_history, title='Accuracy and Loss of the model')
     # # Evaluate
