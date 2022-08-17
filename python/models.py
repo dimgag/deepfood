@@ -18,7 +18,7 @@ from tensorflow.keras.applications.resnet_v2 import ResNet152V2
 from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.applications.vgg16 import VGG16
 from tensorflow.keras.applications.xception import Xception
-from efficientnet_v2 import EfficientNetV2S
+from efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
 
 # from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
 
@@ -43,6 +43,9 @@ def get_model(model_name, include_top, weights):
         model.trainable = False
     elif model_name == 'EfficientNetV2S':
         model = EfficientNetV2S(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=3, classifier_activation="softmax")
+        model.trainable = False
+    elif model_name == 'EfficientNetV2L':
+        model = EfficientNetV2L(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=3, classifier_activation="softmax")
         model.trainable = False
     return model
 
