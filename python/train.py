@@ -39,5 +39,3 @@ def train_model(model, model_name, train, val, nb_train_samples, nb_validation_s
                                   callbacks=[csv_logger, checkpointer])
     model.save(model_name)    
     return model, history
-    
-

@@ -18,26 +18,34 @@ from tensorflow.keras.applications.resnet_v2 import ResNet152V2
 from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.applications.vgg16 import VGG16
 from tensorflow.keras.applications.xception import Xception
-from efficientnet_v2 import EfficientNetV2S
+from efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
+
+# from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
+
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D, GlobalAveragePooling2D, AveragePooling2D
 
+
+
 def get_model(model_name, include_top, weights):
     if model_name == 'ResNet152V2':
-        model =  tf.keras.applications.ResNet152V2(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
+        model =  tf.keras.applications.ResNet152V2(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=101, classifier_activation="softmax")
         model.trainable = False
     elif model_name == 'InceptionV3':
-        model =  tf.keras.applications.InceptionV3(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
+        model =  tf.keras.applications.InceptionV3(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=101, classifier_activation="softmax")
         model.trainable = False
     elif model_name == 'VGG16':
-        model =  tf.keras.applications.VGG16(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
+        model =  tf.keras.applications.VGG16(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=101, classifier_activation="softmax")
         model.trainable = False
     elif model_name == 'Xception':
-        model =  tf.keras.applications.Xception(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
+        model =  tf.keras.applications.Xception(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=101, classifier_activation="softmax")
         model.trainable = False
     elif model_name == 'EfficientNetV2S':
-        model = EfficientNetV2S(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=102, classifier_activation="softmax")
+        model = EfficientNetV2S(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=3, classifier_activation="softmax")
+        model.trainable = False
+    elif model_name == 'EfficientNetV2L':
+        model = EfficientNetV2L(include_top=include_top, weights=weights, input_tensor=None, input_shape=None, pooling=None, classes=3, classifier_activation="softmax")
         model.trainable = False
     return model
 
