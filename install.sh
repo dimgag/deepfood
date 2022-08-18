@@ -1,1 +1,0 @@
-mamba env create -f env.yml
