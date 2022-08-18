@@ -1,7 +1,0 @@
-models folder
-
-ResNet152V2
-Inceptionv3
-VGG16
-Xception
-EfficientNetV2S
