@@ -5,7 +5,7 @@ from tensorflow.keras.optimizers import SGD
 
 
 def train_model(model, model_name, train, val, nb_train_samples, nb_validation_samples, epochs, batch_size):
-    model.trainable = True # I might not need this - because sets all the layers to be trainable... but I'm not sure :(
+    model.trainable = True
     model.compile(optimizer=SGD(learning_rate=0.0001, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
     checkpointer = ModelCheckpoint(filepath=model_name+'.hdf5', verbose=1, save_best_only=True)
     csv_logger = CSVLogger(model_name +'.log') #, append = True)
