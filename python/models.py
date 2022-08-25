@@ -1,8 +1,3 @@
-import numpy as np
-import matplotlib.image as img
-import matplotlib.pyplot as plt
-import os
-import random
 import tensorflow as tf
 from tensorflow import keras
 import tensorflow.keras.backend as K
@@ -19,9 +14,7 @@ from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.applications.vgg16 import VGG16
 from tensorflow.keras.applications.xception import Xception
 from efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
-
 # from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2S, EfficientNetV2L
-
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D, GlobalAveragePooling2D, AveragePooling2D

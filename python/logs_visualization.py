@@ -1,8 +1,3 @@
-# Visualize the Network Architecture
-# from tensorflow.keras.utils import plot_model
-# import pydot
-# plot_model(reconstructed_model, to_file='InceptionV3.png', show_shapes=True)
-
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -29,3 +24,8 @@ def plot_Acc_and_Loss(model_log,title):
 
 
 plot_Acc_and_Loss(model_log, "Name of the Plot")
+
+# Visualize the Network Architecture
+# from tensorflow.keras.utils import plot_model
+# import pydot
+# plot_model(reconstructed_model, to_file='InceptionV3.png', show_shapes=True)

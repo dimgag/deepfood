@@ -1,4 +1,3 @@
-from types import new_class
 import models as m
 import train as t
 import visualization as viz
