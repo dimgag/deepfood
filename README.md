@@ -1,7 +1,7 @@
-# 🍕 DeepFood 🍔
-## 🥖 Multiclass Classification using Keras and Tensorflow on Food-101 Dataset 🥐
+# 🍕 DeepFood 🍝
+## 🥖 Multiclass Classification using Tensorflow on Food-101 Dataset 🥐
 -----------------------------------------------------------------------------------------
-### 🍟 Download & Extract Food-101 Dataset 🥓
+### 🍟 Download & Extract Food-101 Dataset 🍔
 ```
 !wget http://data.vision.ee.ethz.ch/cvl/food-101.tar.gz
 !tar xzvf food-101.tar.gz
@@ -9,13 +9,12 @@
 To split the dataset into Train and Test run the DSRI_split_train_test.py in your terminal after selecting the desired directory.
 
 -----------------------------------------------------------------------------------------
-### 🍿 Create conda env with the requirements 🍦
-# 🍪 Install requirements 🍬
+### 🌯 Install requirements 🌮
 ```
 pip install -r requirements.txt
 ```
 -----------------------------------------------------------------------------------------
-## 🌶 Files Overview 🌮
+### 🍪 Files Overview 🥛
 ```
 food-101 > images - Format of the Food-101 dataset and how to be splitted into Train and Test
          > meta
@@ -53,7 +52,7 @@ requirements.txt       - Requirements for the project
 ```
 
 
-## Citation for food-101 dataset:
+### Citation for food-101 dataset:
 ```
 @inproceedings{bossard14,
   title = {Food-101 -- Mining Discriminative Components with Random Forests},
