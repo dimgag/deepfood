@@ -52,7 +52,7 @@ requirements.txt       - Requirements for the project
 ```
 
 
-## Citation for food-101 dataset:
+### Citation for food-101 dataset:
 ```
 @inproceedings{bossard14,
   title = {Food-101 -- Mining Discriminative Components with Random Forests},
