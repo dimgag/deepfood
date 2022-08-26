@@ -1,7 +1,7 @@
-# 🍕 DeepFood 🍔
+# 🍕 DeepFood 🍝
 ## 🥖 Multiclass Classification using Tensorflow on Food-101 Dataset 🥐
 -----------------------------------------------------------------------------------------
-### 🍟 Download & Extract Food-101 Dataset 🥓
+### 🍟 Download & Extract Food-101 Dataset 🍔
 ```
 !wget http://data.vision.ee.ethz.ch/cvl/food-101.tar.gz
 !tar xzvf food-101.tar.gz
