@@ -1,6 +1,8 @@
 # 🍕 DeepFood 🍝
 ## 🥖 Multiclass Classification using Tensorflow on Food-101 Dataset 🥐
 -----------------------------------------------------------------------------------------
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=dimgag&label=Profile%20views&color=0e75b6&style=flat-square" alt="dimgag/deepfood" /> </p>
+
 ### 🍟 Download & Extract Food-101 Dataset 🍔
 ```
 !wget http://data.vision.ee.ethz.ch/cvl/food-101.tar.gz
