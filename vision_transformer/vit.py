@@ -190,7 +190,6 @@ def create_vit_classifier():
     return model
 
 
-vit = create_vit_classifier()
 
 
 
