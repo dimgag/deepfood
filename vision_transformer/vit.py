@@ -16,7 +16,7 @@ validation_data_dir = '/Users/dim__gag/Desktop/food-101/test'
 
 # Hyperparameters
 num_classes = 101
-input_shape = (224, 224, 3)
+input_shape = (299, 299,3)
 learning_rate = 0.001
 weight_decay = 0.0001
 batch_size = 256
@@ -33,6 +33,8 @@ transformer_units = [
 transformer_layers = 8
 mlp_head_units = [2048, 1024]  # Size of the dense layers of the final classifier
 
+
+
 img_width, img_height = 299, 299 # input image dimensions
 
 nb_train_samples = 75750
@@ -44,7 +46,7 @@ nb_validation_samples = 25250
 
 
 
-def data_augmentation(train_data_dir, validation_data_dir, img_height, img_width, batch_size):
+def data_augmentation_1(train_data_dir, validation_data_dir, img_height, img_width, batch_size):
     # Data Augmentation
     train_datagen = ImageDataGenerator(
         rescale=1. / 255,
@@ -70,7 +72,29 @@ def data_augmentation(train_data_dir, validation_data_dir, img_height, img_width
 
 
 
-train_generator, validation_generator = data_augmentation(train_data_dir=train_data_dir, validation_data_dir=validation_data_dir, img_width=img_height, img_height=img_height, batch_size=batch_size)
+train_generator, validation_generator = data_augmentation_1(train_data_dir=train_data_dir, validation_data_dir=validation_data_dir, img_width=img_height, img_height=img_height, batch_size=batch_size)
+
+
+
+data_augmentation = keras.Sequential(
+    [
+        layers.Normalization(),
+        layers.Resizing(image_size, image_size),
+        layers.RandomFlip("horizontal"),
+        layers.RandomRotation(factor=0.02),
+        layers.RandomZoom(
+            height_factor=0.2, width_factor=0.2
+        ),
+    ],
+    name="data_augmentation",
+)
+# Compute the mean and the variance of the training data for normalization.
+data_augmentation.layers[0].adapt(train_generator)
+
+
+
+
+
 
 
 
@@ -166,7 +190,7 @@ def create_vit_classifier():
     return model
 
 
-
+vit = create_vit_classifier()
 
 
 
