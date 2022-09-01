@@ -1,3 +1,8 @@
+'''
+Implementation of the ViT model in Keras for Food Classification on the Food-101 dataset.
+In this implementation, the model is trained on the Food-101 dataset and evaluated on the Food-101 test set.
+Still in progress.
+'''
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
