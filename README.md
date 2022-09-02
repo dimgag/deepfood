@@ -7,7 +7,7 @@
 !wget http://data.vision.ee.ethz.ch/cvl/food-101.tar.gz
 !tar xzvf food-101.tar.gz
 ```
-To split the dataset into Train and Test run the DSRI_split_train_test.py in your terminal after selecting the desired directory.
+To split the dataset into Train and Test run the python/split_train_test.py in your terminal after selecting the desired directory.
 
 -----------------------------------------------------------------------------------------
 ### 🌯 Install requirements 🌮
