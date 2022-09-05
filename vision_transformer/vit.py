@@ -55,8 +55,6 @@ train_generator, validation_generator = data_augmentation(train_data_dir=train_d
 # print(train_generator.class_indices)
 
 
-# Build the ViT model
-
 # Hypererparameters
 learning_rate = 0.001
 weight_decay = 0.0001
@@ -74,7 +72,7 @@ transformer_layers = 8
 mlp_head_units = [2048, 1024]  # Size of the dense layers of the final classifier
 
 
-
+# Implement multilayer perceptron as a Keras layer. (MLP)
 def mlp(x, hidden_units, dropout_rate):
     for units in hidden_units:
         x = layers.Dense(units, activation=tf.nn.gelu)(x)
@@ -214,6 +212,6 @@ history = vit_classifier.fit(train_generator, epochs=epochs, validation_data=val
 
 
 # Evaluate the model
-test_loss, test_acc = vit_classifier.evaluate(test_generator, verbose=2)
+test_loss, test_acc = vit_classifier.evaluate(validation_generator, verbose=2)
 print('Validation loss:', test_loss)
 print('Validation accuracy:', test_acc)

@@ -22,7 +22,7 @@ print(f"x_test shape: {x_test.shape} - y_test shape: {y_test.shape}")
 learning_rate = 0.001
 weight_decay = 0.0001
 batch_size = 256
-num_epochs = 100
+num_epochs = 1
 image_size = 72  # We'll resize input images to this size
 patch_size = 6  # Size of the patches to be extract from the input images
 num_patches = (image_size // patch_size) ** 2
@@ -85,11 +85,8 @@ class Patches(layers.Layer):
 
 
 
-
-
-
-
-
+#############################################################
+# Visualize the data 
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(4, 4))
@@ -113,9 +110,7 @@ for i, patch in enumerate(patches[0]):
     patch_img = tf.reshape(patch, (patch_size, patch_size, 3))
     plt.imshow(patch_img.numpy().astype("uint8"))
     plt.axis("off")
-
-
-
+#############################################################
 
 
 class PatchEncoder(layers.Layer):
@@ -140,12 +135,16 @@ class PatchEncoder(layers.Layer):
 
 def create_vit_classifier():
     inputs = layers.Input(shape=input_shape)
+    print("input shape:", inputs.shape)
     # Augment data.
     augmented = data_augmentation(inputs)
+    print("augmented shape:", augmented.shape)
     # Create patches.
     patches = Patches(patch_size)(augmented)
+    print("patches shape:", patches.shape)
     # Encode patches.
     encoded_patches = PatchEncoder(num_patches, projection_dim)(patches)
+    print("encoded_patches shape:", encoded_patches.shape)
 
     # Create multiple layers of the Transformer block.
     for _ in range(transformer_layers):
