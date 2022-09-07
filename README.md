@@ -99,7 +99,7 @@ requirements.txt       - Requirements for the project
 <!-- visualization table -->
 <!-- add Figure 1 -->
 
-<img align="center" src="/Users/dim__gag/git/deepfood/readme_images/EffNetS_vs_EffNetL.png" alt="EffNetS_vs_EffNetL" width="727" height="704">
+<img align="center" src="https://github.com/dimgag/deepfood/blob/master/readme_images/EffNetS_vs_EffNetL.png" alt="EffNetS_vs_EffNetL" width="727" height="704">
 
 
 <!-- empty space -->
@@ -107,7 +107,7 @@ requirements.txt       - Requirements for the project
 
 
 # 🍽 Predictions
-<img align="center" src="/Users/dim__gag/git/deepfood/readme_images/Predictions.png" alt="EffNetS_vs_EffNetL" width="728" height="490">
+<img align="center" src="https://github.com/dimgag/deepfood/blob/master/readme_images/Predictions.png" alt="EffNetS_vs_EffNetL" width="728" height="490">
 
 
 <!-- empty space -->
