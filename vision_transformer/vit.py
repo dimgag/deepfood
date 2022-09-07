@@ -207,7 +207,7 @@ model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
     save_best_only=True)
 
 
-# Train the model
+# Train the model // Error here when using fit_generator (deprecated) and fit (not working) 
 history = vit_classifier.fit(train_generator, epochs=epochs, validation_data=validation_generator, callbacks=[model_checkpoint_callback])
 
 
