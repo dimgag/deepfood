@@ -116,14 +116,3 @@ requirements.txt       - Requirements for the project
 # 🍺 Acknowledgements 🍻
 - [Food-101 Dataset](https://www.vision.ee.ethz.ch/datasets_extra/food-101/)
 - [EfficientNetV2](https://arxiv.org/abs/2104.00298)
-
-### Citation for food-101 dataset:
-```
-@inproceedings{bossard14,
-  title = {Food-101 -- Mining Discriminative Components with Random Forests},
-  author = {Bossard, Lukas and Guillaumin, Matthieu and Van Gool, Luc},
-  booktitle = {European Conference on Computer Vision},
-  year = {2014}
-}
-```
-
