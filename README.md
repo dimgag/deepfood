@@ -8,8 +8,6 @@
 ```
 To split the dataset into Train and Test run the python/split_train_test.py in your terminal after selecting the desired directory.
 
-<img align="center" src="/Users/dim__gag/git/deepfood/readme_images/food101.png" alt="Food101" width="916" height="1020">
-
 <!-- empty space -->
 <br><br>
 
