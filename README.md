@@ -114,5 +114,5 @@ requirements.txt       - Requirements for the project
 <br><br>
 
 # 🍺 Acknowledgements 🍻
-- [Food-101 Dataset](https://www.vision.ee.ethz.ch/datasets_extra/food-101/)
+- [Food-101 Dataset](https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/)
 - [EfficientNetV2](https://arxiv.org/abs/2104.00298)
