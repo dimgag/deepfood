@@ -50,11 +50,19 @@ python   > evaluate.py - Evaluate the model on the test set
          > split_train_test.py - Create the data folders in DSRI persistent folder
          > train.py - Train the model
          > visualization.py - Visualize the model output
+readme_images               - Images used in the README.md
+test_images                 - images used for testing the model
 
-test_images            - images used for testing the model
-DeepFood_Food101.ipynb - Code Notebook with Models and Data
-README.md              - README
-requirements.txt       - Requirements for the project
+vision_transformer     > vit_cifar100.py - Vision Transformer model definition
+                       > vit.py - Vision Transformer model definition
+
+DeepFood_Food101.ipynb          - Code Notebook with Models and Data
+EfficientNetV2_Evaluation.ipynb - Code Notebook with Models and Data Evaluation
+logs_analysis.ipynb             - Code Notebook with Logs Analysis
+model_predictions.ipynb         - Code Notebook with Model Predictions
+
+README.md                       - README
+requirements.txt                - Requirements for the repository
 ```
 
 <!-- empty space -->
