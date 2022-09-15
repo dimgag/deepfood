@@ -123,7 +123,8 @@ requirements.txt                - Requirements for the repository
 # 🚀 Test the model
 ```
 # Activate your python env with the requirement.txt
-RUN python food_app.py
+# Then Run 
+python food_app.py
 ```
 
 
