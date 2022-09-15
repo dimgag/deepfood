@@ -117,6 +117,15 @@ requirements.txt                - Requirements for the repository
 # 🍽 Predictions
 <img align="center" src="https://github.com/dimgag/deepfood/blob/master/readme_images/Predictions.png" alt="EffNetS_vs_EffNetL" width="728" height="490">
 
+<!-- empty space -->
+<br><br>
+
+# 🚀 Test the model
+```
+# Activate your python env with the requirement.txt
+RUN python food_app.py
+```
+
 
 <!-- empty space -->
 <br><br>
