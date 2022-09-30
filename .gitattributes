@@ -13,7 +13,7 @@
 ############
 [attr]PureBasic text linguist-language=PureBasic
 *.cfg   text linguist-generated=true
-*.pb    PureBasic
-*.pbf   PureBasic
-*.pbi   PureBasic
+*.pb    text
+*.pbf   text
+*.pbi   text # PureBasic
 *.pbp   linguist-language=XML linguist-generated=true
