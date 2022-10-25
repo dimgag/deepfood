@@ -127,6 +127,12 @@ requirements.txt                - Requirements for the repository
 python food_app.py
 ```
 
+<!-- empty space -->
+<br><br>
+
+# Future code to do
+- ViT for food recognition task
+- Test models on images with added noise (filters, rotations, etc). 
 
 <!-- empty space -->
 <br><br>
